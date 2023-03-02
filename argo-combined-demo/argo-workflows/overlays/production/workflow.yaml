@@ -158,13 +158,14 @@ spec:
           apiVersion: v1
           kind: Pod
           metadata:
-            creationTimestamp: null
             labels:
               run: nginx
             name: nginx
             namespace: workflows
+          automountServiceAccountToken: false
           spec:
             serviceAccount: workflow
+
             containers:
             - image: nginx
               name: nginx
