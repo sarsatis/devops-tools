@@ -9,9 +9,9 @@ metadata:
 spec:
   project: production
   source:
-    repoURL: https://github.com/sarsatis/devops-tools/argo-combined-demo
+    repoURL: https://github.com/sarsatis/devops-tools.git
     targetRevision: HEAD
-    path: production
+    path: argo-combined-demo/production
   destination:
     server: https://kubernetes.default.svc
     namespace: production
