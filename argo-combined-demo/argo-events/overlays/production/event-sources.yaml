@@ -10,11 +10,11 @@ spec:
     - port: 12000
       targetPort: 12000
   github:
-    argo-combined-app:
-      owner: vfarcic
-      repository: argo-combined-app
+    devops-tools:
+      owner: sarsatis
+      repository: devops-tools
       webhook:
-        endpoint: /argo-combined-app
+        endpoint: /devops-tools
         port: "12000"
         method: POST
         url: http://webhook.127.0.0.1.nip.io
