@@ -1,6 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
+  namespace: argo
   generateName: very-
   labels:
     workflows.argoproj.io/archive-strategy: "false"
@@ -8,8 +9,8 @@ spec:
   entrypoint: silly
   serviceAccountName: workflow
   templates:
-  - name: silly
-    container:
-      image: alpine:latest
-      command: [ls]
-      args: ["-l"]
+    - name: silly
+      container:
+        image: alpine:latest
+        command: [ls]
+        args: ["-l"]
