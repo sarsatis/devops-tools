@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   namespace: argo
-  generateName: very-
+  name: very
   labels:
     workflows.argoproj.io/archive-strategy: "false"
 spec:
