@@ -164,6 +164,7 @@ spec:
             name: nginx
             namespace: workflows
           spec:
+            serviceAccount: workflow
             serviceAccountName: workflow
             automountServiceAccountToken: false
             containers:
