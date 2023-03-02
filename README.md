@@ -12,3 +12,4 @@ All the devops tools
 8. k apply -f project.yaml
 9. k apply -f apps.yaml
 10. add this in argo-workflows.yaml extraArgs: - --auth-mode=server
+11. brew install argo
