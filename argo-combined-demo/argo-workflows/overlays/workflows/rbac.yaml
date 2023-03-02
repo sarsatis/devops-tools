@@ -32,6 +32,7 @@ rules:
   - get
   - watch
   - patch
+  - create
 - apiGroups:
   - ""
   resources:
