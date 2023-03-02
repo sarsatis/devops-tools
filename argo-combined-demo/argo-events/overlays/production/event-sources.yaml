@@ -1,53 +1,70 @@
----
+# ---
+
+# apiVersion: argoproj.io/v1alpha1
+# kind: EventSource
+# metadata:
+#   name: github
+# spec:
+#   service:
+#     ports:
+#     - port: 12000
+#       targetPort: 12000
+#   github:
+#     devops-tools:
+#       owner: sarsatis
+#       repository: devops-tools
+#       webhook:
+#         endpoint: /devops-tools
+#         port: "12000"
+#         method: POST
+#         url: http://webhook.127.0.0.1.nip.io
+#       events:
+#         - "*"
+#       apiToken:
+#         name: github-access
+#         key: token
+#       insecure: true
+#       active: true
+#       contentType: json
+
+# ---
+
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: github
+#   annotations:
+#     kubernetes.io/ingress.class: "nginx"
+#     ingress.kubernetes.io/ssl-redirect: "false"
+#     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#            name: github-eventsource-svc
+#            port:
+#              number: 12000
+#     host: webhook.127.0.0.1.nip.io
 
 apiVersion: argoproj.io/v1alpha1
 kind: EventSource
 metadata:
-  name: github
+  name: webhook
 spec:
   service:
     ports:
-    - port: 12000
-      targetPort: 12000
-  github:
-    devops-tools:
-      owner: sarsatis
-      repository: devops-tools
-      webhook:
-        endpoint: /devops-tools
-        port: "12000"
-        method: POST
-        url: http://webhook.127.0.0.1.nip.io
-      events:
-        - "*"
-      apiToken:
-        name: github-access
-        key: token
-      insecure: true
-      active: true
-      contentType: json
-
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: github
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    ingress.kubernetes.io/ssl-redirect: "false"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-           name: github-eventsource-svc
-           port:
-             number: 12000
-    host: webhook.127.0.0.1.nip.io
-
-
+      - port: 12000
+        targetPort: 12000
+  webhook:
+    # event-source can run multiple HTTP servers. Simply define a unique port to start a new HTTP server
+    example:
+      # port to run HTTP server on
+      port: "12000"
+      # endpoint to listen to
+      endpoint: /example
+      # HTTP request method to allow. In this case, only POST requests are accepted
+      method: POST
