@@ -163,10 +163,7 @@ spec:
               run: nginx
             name: nginx
             namespace: workflows
-          automountServiceAccountToken: false
           spec:
-            serviceAccount: workflow
-
             containers:
             - image: nginx
               name: nginx
