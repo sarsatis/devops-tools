@@ -19,7 +19,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow                  # new type of k8s spec
 metadata:
   namespace: workflows
-  generateName: hello-world-    # name of the workflow spec
+  name: hello-world    # name of the workflow spec
 spec:
   entrypoint: whalesay          # invoke the whalesay template
   templates:
