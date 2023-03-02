@@ -13,3 +13,15 @@ All the devops tools
 9. k apply -f apps.yaml
 10. add this in argo-workflows.yaml extraArgs: - --auth-mode=server
 11. brew install argo
+
+12. argo --namespace workflows submit \
+    workflows/cd-mock.yaml
+
+13. argo --namespace workflows list
+
+14. argo --namespace workflows \
+    get @latest
+
+15. argo --namespace workflows \
+    logs @latest \
+    --follow
