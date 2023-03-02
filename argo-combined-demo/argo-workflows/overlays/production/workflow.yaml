@@ -150,7 +150,7 @@ metadata:
   namespace: workflows
 spec:
   entrypoint: nginx-pod
-  serviceAccount: workflow
+  serviceAccountName: workflow
   templates:
     - name: nginx-pod
       resource:
