@@ -63,7 +63,8 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: steps-
+  name: multi-steps
+  namespace: workflows
 spec:
   entrypoint: hello-hello-hello
 
