@@ -9,7 +9,7 @@ spec:
   project: production
   source:
     path: kustomize/overlays/production
-    repoURL: https://github.com/vfarcic/argo-combined-app
+    repoURL: https://github.com/sarsatis/devops-tools/argo-combined-demo
     targetRevision: HEAD
     kustomize:
       images:
