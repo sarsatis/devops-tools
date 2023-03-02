@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  namespace: workflow
+  namespace: workflows
   name: very
   labels:
     workflows.argoproj.io/archive-strategy: "false"
