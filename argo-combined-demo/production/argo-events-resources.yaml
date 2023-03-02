@@ -8,7 +8,7 @@ metadata:
 spec:
   project: production
   source:
-    path: argo-events/overlays/production
+    path: argo-combined-demo/argo-events/overlays/production
     repoURL: https://github.com/sarsatis/devops-tools.git
     targetRevision: HEAD
   destination:
