@@ -142,35 +142,33 @@ spec:
             arguments:
               parameters: [{ name: message, value: D }]
 
-# ---
-# apiVersion: argoproj.io/v1alpha1
-# kind: Workflow
-# metadata:
-#   name: k8s-resource-create
-#   namespace: workflows
-# spec:
-#   entrypoint: nginx-pod
-#   templates:
-#     - name: nginx-pod
-#       resource:
-#         action: create
-#         manifest: |
-#           apiVersion: v1
-#           kind: Pod
-#           metadata:
-#             creationTimestamp: null
-#             labels:
-#               run: nginx
-#             name: nginx
-#             namespace: workflows
-#           spec:
-#             serviceAccount: workflow
-#             serviceAccountName: workflow
-#             automountServiceAccountToken: false
-#             containers:
-#             - image: nginx
-#               name: nginx
-#               resources: {}
-#             dnsPolicy: ClusterFirst
-#             restartPolicy: Always
-#           status: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: k8s-resource-create
+  namespace: workflows
+spec:
+  entrypoint: nginx-pod
+  templates:
+    - name: nginx-pod
+      resource:
+        action: create
+        manifest: |
+          apiVersion: v1
+          kind: Pod
+          metadata:
+            creationTimestamp: null
+            labels:
+              run: nginx
+            name: nginx
+            namespace: workflows
+          spec:
+            serviceAccount: workflow
+            containers:
+            - image: nginx
+              name: nginx
+              resources: {}
+            dnsPolicy: ClusterFirst
+            restartPolicy: Always
+          status: {}
