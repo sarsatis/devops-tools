@@ -4,36 +4,40 @@ metadata:
   name: webhook
 spec:
   template:
-    serviceAccountName: argo-events-sa
+    serviceAccountName: operate-workflow-sa
   dependencies:
-  - name: github
-    eventSourceName: github
-    eventName: argo-combined-app
+    - name: test-dep
+      eventSourceName: webhook
+      eventName: example
   triggers:
-  - template:
-      name: trigger
-      argoWorkflow:
-        group: argoproj.io
-        version: v1alpha1
-        resource: workflows
-        operation: submit
-        source:
-          resource:
-            apiVersion: argoproj.io/v1alpha1
-            kind: Workflow
-            metadata:
-              generateName: argo-combined-app-
-              namespace: workflows
-            spec:
-              entrypoint: whalesay          # invoke the whalesay template
-              templates:
-                - name: whalesay              # name of the template
-                  container:
-                    image: docker/whalesay
-                    command: [ cowsay ]
-                    args: [ "hello world" ]
-                    resources: # limit the resources
-                      limits:
-                        memory: 32Mi
-                        cpu: 100m
-              
+    - template:
+        name: webhook-workflow-trigger
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: argoproj.io/v1alpha1
+              kind: Workflow
+              metadata:
+                generateName: webhook-
+              spec:
+                entrypoint: whalesay
+                arguments:
+                  parameters:
+                    - name: message
+                      # the value will get overridden by event payload from test-dep
+                      value: hello world
+                templates:
+                  - name: whalesay
+                    inputs:
+                      parameters:
+                        - name: message
+                    container:
+                      image: docker/whalesay:latest
+                      command: [cowsay]
+                      args: ["{{inputs.parameters.message}}"]
+          parameters:
+            - src:
+                dependencyName: test-dep
+                dataKey: body
+              dest: spec.arguments.parameters.0.value
