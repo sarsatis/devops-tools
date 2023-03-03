@@ -10,7 +10,7 @@ spec:
   source:
     path: argo-combined-demo/argo-workflows/overlays/production
     repoURL: https://github.com/sarsatis/devops-tools.git
-    targetRevision: test
+    targetRevision: master
   destination:
     namespace: argo
     server: https://kubernetes.default.svc
@@ -18,4 +18,3 @@ spec:
     automated:
       selfHeal: true
       prune: true
-
