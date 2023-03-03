@@ -1,8 +1,8 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argo-workflows-resources
-  namespace: argocd
+  name: jenkins-workflows-resources
+  namespace: jenkins
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
