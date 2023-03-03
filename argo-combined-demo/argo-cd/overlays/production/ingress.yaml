@@ -20,6 +20,3 @@ spec:
                 port:
                   number: 80
       host: argo-cd.127.0.0.1.nip.io
-
-
-      #test
