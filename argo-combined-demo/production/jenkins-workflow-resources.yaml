@@ -8,9 +8,9 @@ metadata:
 spec:
   project: production
   source:
-    path: argo-combined-demo/argo-workflows/overlays/production
+    path: argo-combined-demo/jenkins-workflows/overlays/production
     repoURL: https://github.com/sarsatis/devops-tools.git
-    targetRevision: master
+    targetRevision: HEAD
   destination:
     namespace: argo
     server: https://kubernetes.default.svc
@@ -18,3 +18,4 @@ spec:
     automated:
       selfHeal: true
       prune: true
+
