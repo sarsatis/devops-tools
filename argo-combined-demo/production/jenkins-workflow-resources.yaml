@@ -2,7 +2,6 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: jenkins-workflows-resources
-  namespace: jenkins
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
@@ -17,4 +16,3 @@ spec:
     automated:
       selfHeal: true
       prune: true
- 
