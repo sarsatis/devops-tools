@@ -18,7 +18,7 @@ spec:
         method: POST
         url: http://webhook.127.0.0.1.nip.io
       events:
-        - "*"
+        - "push"
       apiToken:
         name: github-access
         key: token
