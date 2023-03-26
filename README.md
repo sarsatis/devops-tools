@@ -1,7 +1,8 @@
 # devops-tools
 
 Jenkins
-
+To bring up jenkins use below command
+helm install --create-namespace jenkins jenkins/
 
 
 
