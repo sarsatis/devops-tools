@@ -7,7 +7,15 @@
 
 > helm install --create-namespace jenkins jenkins/
 
+# Azure VM
+> Azure VM can be spin up using template and parameter json and use install-script to install kubernetes and jenkins on that server
 
+# Istio on Azure VM
+
+> curl -Ls https://istio.io/downloadIstio | ISTIO_VERSION=1.9.0 sh -
+> cd istio-1.9.0/
+> export PATH=$PWD/bin:$PATH
+> istioctl install --set profile=demo -y && kubectl apply -f samples/addons
 
 
 All the devops tools
