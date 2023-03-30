@@ -2,6 +2,7 @@
 
 # Jenkins
 ##### To bring up jenkins use below command (Note Remember to create dockercred)
+> helm repo add jenkins https://charts.jenkins.io
 
 > kubectl create secret docker-registry dockercred --docker-server=https://index.docker.io/v1/ --docker-username=sarthaksatish --docker-password=***** --docker-email=sarthak8055@gmail.com
 
@@ -61,12 +62,82 @@ helm install ingress-nginx /ingress-nginx \
     --set controller.service.loadBalancerIP="20.169.187.220"    
 ```
 
+# Vault using helm
+
+```t
+> helm repo add hashicorp https://helm.releases.hashicorp.com
+
+> helm pull hashicorp/vault --untar
+
+> k create ns vault
+
+> k exec -it vault-0 -- vault status
+
+> k exec -it vault-0 -- /bin/sh
+
+> vault operator init
+> vault operator unseal and provide 3 keys
+> vault login loginkey(hvs.HuJAgFMDijwXWPmU9k4BWtOO)
+```
+
+```t
+k exec -it vault-0 -- /bin/sh
+vault secrets enable -path=crds kv-v2
+vault kv get crds/mysql
+vault kv put crds/mysql username=root 
+password=12345
+vault kv delete crds/mysql
+
+
+vault secrets enable -path=crds kv-v2
+
+cat <<EOF > /home/vault/app-policy.hcl
+path "crds/data/mongodb" {
+capabilities = ["create", "update"]
+}
+path "crds/data/mysql" {
+capabilities = ["read"]
+}
+EOF
+
+vault policy write app /home/vault/app-policy.hcl
+
+vault policy list
+
+vault policy read app
+
+export VAULT_TOKEN="$(vault token create -field token -policy=app)"
+vault kv put crds/mysql username=root
+export VAULT_TOKEN=ORIGINALTOKEN after above doesnt work
+
+```
+
+> vault auth enable kubernetes
+
+```t
+vault write auth/kubernetes/config \
+token_reviewer_jwt="$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" \
+kubernetes_host=https://${KUBERNETES_PORT_443_TCP_ADDR}:443 \
+kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+```
+
+```t
+vault write auth/kubernetes/role/phpapp \
+bound_service_account_names=app \
+bound_service_account_namespaces=vault \
+policies=app \
+ttl=1h
+```
+
+> kubectl describe clusterrolebinding vault-server-binding
+
 # Istio on Azure VM
 
 > curl -Ls https://istio.io/downloadIstio | ISTIO_VERSION=1.9.0 sh -
 > cd istio-1.9.0/
 > export PATH=$PWD/bin:$PATH
 > istioctl install --set profile=demo -y && kubectl apply -f samples/addons
+
 
 
 All the devops tools
