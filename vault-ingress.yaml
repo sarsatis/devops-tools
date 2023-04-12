@@ -1,22 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: vault
-  namespace: vault
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: vault
+  namespace: vault
 spec:
   rules:
-  - http:
+  - host: vault.simplifydevopstools.com
+    http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
+      - backend:
           service:
             name: vault-ui
             port:
               number: 8200
-
+        path: /
+        pathType: Prefix

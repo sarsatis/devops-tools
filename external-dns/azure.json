@@ -1,0 +1,7 @@
+{
+    "tenantId": "d52c9ea1-7c21-47b1-82a3-33a74b1f74b8",
+    "subscriptionId": "3ec3acee-ef93-4cb4-a3eb-4304bc552319",
+    "resourceGroup": "sarthak-cluste_group", 
+    "useManagedIdentityExtension": true,
+    "userAssignedIdentityID": "cb5ab802-a9cf-43e8-9c3f-663a80bd4db8"  
+  }
