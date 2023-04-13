@@ -1,23 +1,60 @@
-1. Deployed nginx - k apply -f nginx.yaml
-2. Add this in ingress.yaml kubernetes.io/ingress.class: "nginx"
-3. kustomize build argo-cd/overlays/production | k apply -f -k
-4. export PASS=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-5. export INGRESS_HOST=127.0.0.1
-6. argocd login --insecure --username admin --password $PASS --grpc-web argo-cd.$INGRESS_HOST.nip.io
-7. open http://argo-cd.$INGRESS_HOST.nip.io
-8. k apply -f project.yaml
-9. k apply -f apps.yaml
-10. add this in argo-workflows.yaml extraArgs: - --auth-mode=server
-11. brew install argo
+# ArgoCD
 
-12. argo --namespace workflows submit \
-    workflows/cd-mock.yaml
+## Step 1 :- Installation
 
-13. argo --namespace workflows list
+```t
+# Install Helm3 (if not installed)
+brew install helm
 
-14. argo --namespace workflows \
-    get @latest
+# Create a namespace for your ingress resources
+kubectl create namespace argocd
 
-15. argo --namespace workflows \
-    logs @latest \
-    --follow
+# Add the official stable repository
+helm repo add argo https://argoproj.github.io/argo-helm 
+helm repo update
+
+#  Customizing the Chart Before Installing. 
+helm show values argo/argo-cd
+
+helm install argocd argo/argo-cd -n argocd
+
+Sample Logs
+NAME: argocd
+LAST DEPLOYED: Fri Apr 14 01:44:31 2023
+NAMESPACE: argocd
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+In order to access the server UI you have the following options:
+
+1. kubectl port-forward service/argocd-server -n argocd 8080:443
+
+    and then open the browser on http://localhost:8080 and accept the certificate
+
+2. enable ingress in the values file `server.ingress.enabled` and either
+      - Add the annotation for ssl passthrough: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-1-ssl-passthrough
+      - Set the `configs.params."server.insecure"` in the values file and terminate SSL at your ingress: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
+
+
+After reaching the UI the first time you can login with username: admin and the random password generated during the installation. You can find the password by running:
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+
+(You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
+
+````
+
+## Step 2 :- Create an ingress to access argocd 
+
+```t
+k apply -f 7.argocd/argocd-ingress.yaml
+```
+
+## ArgoCD Commands
+
+```t
+argocd login --insecure --username admin --password fIqwJTFAAiAxTO9I --grpc-web argocd.simplifydevopstools.com
+
+argocd account update-password --current-password fIqwJTFAAiAxTO9I --new-password (Give Your Pass)
+```
