@@ -1,13 +1,13 @@
 # Kubernetes ExternalDNS to create Record Sets in Azure DNS from AKS
 
-![](../external-dns/img/externaldns.png)
+![](../5.external-dns/img/externaldns.png)
 
 ## Step-01: Introduction
 - Create External DNS Manifest
 - Provide Access to DNZ Zones using **Azure Managed Service Identity** for External DNS pod to create **Record Sets** in Azure DNS Zones
 - Review Application & Ingress Manifests
 - Deploy and Test
-![](../external-dns/img/azure-aks-ingress-external-dns.png)
+![](../5.external-dns/img/azure-aks-ingress-external-dns.png)
 
 ## Step-02: Create External DNS Manifests
 - External-DNS needs permissions to Azure DNS to modify (Add, Update, Delete DNS Record Sets)

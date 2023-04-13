@@ -2,14 +2,14 @@
 # Vault using helm
 
 # Vault Installation
-![](../vault/img/Installation.png)
+![](../3.vault/img/Installation.png)
 
 ```shell
 ### Installation Commands
 > helm repo add hashicorp https://helm.releases.hashicorp.com
 > helm pull hashicorp/vault --untar
 > k create ns vault
-> helm install vault --set='ui.enabled=true' --set='ui.serviceType=NodePort' --set='server.dataStorage.enabled=false' hashicorp/vault 
+> helm install vault hashicorp/vault --set='ui.enabled=true' --set='ui.serviceType=NodePort' --set='server.dataStorage.enabled=false' hashicorp/vault 
 
 ### To check the status of vault
 ### You have to exec into the vault pod and check the status
@@ -18,7 +18,7 @@
 ```
 
 # Vault Initialization
-![](../vault/img/Initialization.png)
+![](../3.vault/img/Initialization.png)
 ```shell
 ### Initially when vault loads up it will be in sealed state we have to unseal it using operator init
 > k exec -it vault-0 -- /bin/sh
@@ -30,7 +30,7 @@
 ```
 
 # Adding secrets to vault
-![](../vault/img/Secrets.png)
+![](../3.vault/img/Secrets.png)
 
 ```shell
 > k exec -it vault-0 -- /bin/sh
@@ -41,7 +41,7 @@
 ```
 
 # Authorization
-![](../vault/img/Authorization.png)
+![](../3.vault/img/Authorization.png)
 
 ```shell
 > k exec -it vault-0 -- /bin/sh
@@ -70,7 +70,7 @@ EOF
 > export VAULT_TOKEN=ORIGINALTOKEN after above doesnt work
 ```
 # Authentication
-![](../vault/img/Authentication.png)
+![](../3.vault/img/Authentication.png)
 
 ```shell
 > k exec -it vault-0 -- /bin/sh
@@ -89,11 +89,11 @@ ttl=1h
 ```
 
 # Annotations
-![](../vault/img/Annotations.png)
+![](../3.vault/img/Annotations.png)
 
 ```shell
 ### After adding the annotations to pod template. Agent injector injects an init container and a container to establish a communication to vault which will help in fetching secrets
 ```
 
 # How it works internally
-![](../vault/img/complete.png)
+![](../3.vault/img/complete.png)
