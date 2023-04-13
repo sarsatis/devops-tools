@@ -3,6 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: "letsencrypt"
   name: vault
   namespace: vault
 spec:
@@ -17,3 +18,7 @@ spec:
               number: 8200
         path: /
         pathType: Prefix
+  tls:
+  - hosts:
+    - vault.simplifydevopstools.com
+    secretName: vault.simplifydevopstools-secret

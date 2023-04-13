@@ -1,16 +1,22 @@
+![](../6.cert-manager/img/cert-manager1.png)
+
+![](../6.cert-manager/img/cert-manager2.png)
+
+
+
 # Ingress - SSL
 
 ## Step-01: Introduction
 - Implement SSL using Lets Encrypt
 
-![](../6.cert-manager/img/cert-manager.png)
+![](../6.cert-manager/img/cert-manager3.png)
 
 ## Step-02: Install Cert Manager
 ```t
 # Create NS
 kubectl create ns cert-manager
 
-# Label the ingress-basic namespace to disable resource validation
+# Label the cert-manager namespace to disable resource validation
 kubectl label namespace cert-manager cert-manager.io/disable-validation=true
 
 # Add the Jetstack Helm repository
@@ -97,21 +103,19 @@ kubectl describe clusterissuer letsencrypt
 ```
 
 
-## Step-07: Review Application NginxApp1,2 K8S Manifests
-- 01-NginxApp1-Deployment.yml
-- 02-NginxApp1-ClusterIP-Service.yml
-- 01-NginxApp2-Deployment.yml
-- 02-NginxApp2-ClusterIP-Service.yml
+## Step-07: Review Application Ingress Manifests
 
-## Step-08: Create or Review Ingress SSL Kubernetes Manifest
-- 01-Ingress-SSL.yml
+![](../6.cert-manager/img/cert-manager4.png)
+
+- domain-based-ssl/jenkins-ingress.yaml
+- domain-based-ssl/vault-ingress.yaml
 
 ## Step-09: Deploy All Manifests & Verify
 - Certificate Request, Generation, Approal and Download and be ready might take from 1 hour to couple of days if we make any mistakes and also fail.
 - For me it took, only 5 minutes to get the certificate from **https://letsencrypt.org/**
 ```t
 # Deploy
-kubectl apply -R -f kube-manifests/
+kubectl apply -R -f 6.cert-manager/domain-based-ssl/
 
 # Verify Pods
 kubectl get pods
@@ -121,45 +125,17 @@ kubectl get pods -n cert-manager
 kubectl  logs -f <cert-manager-55d65894c7-sx62f> -n cert-manager #Replace Pod name
 
 # Verify SSL Certificates (It should turn to True)
-kubectl get certificate
-```
-```log
-stack@Azure:~$ kubectl get certificate
-NAME                      READY   SECRET                    AGE
-app1-kubeoncloud-secret   True    app1-kubeoncloud-secret   45m
-app2-kubeoncloud-secret   True    app2-kubeoncloud-secret   45m
-stack@Azure:~$
-```
+$ k get certificate -A
+NAMESPACE   NAME                                 READY   SECRET                               AGE
+jenkins     jenkins.simplifydevopstools-secret   True    jenkins.simplifydevopstools-secret   22m
+vault       vault.simplifydevopstools-secret     True    vault.simplifydevopstools-secret     22m
 
-```log
-# Sample Success Log
-I0824 13:09:00.495721       1 controller.go:129] cert-manager/controller/orders "msg"="syncing item" "key"="default/app2-kubeoncloud-secret-2792049964-67728538" 
-I0824 13:09:00.495900       1 sync.go:102] cert-manager/controller/orders "msg"="Order has already been completed, cleaning up any owned Challenge resources" "resource_kind"="Order" "resource_name"="app2-kubeoncloud-secret-2792049964-67728538" "resource_namespace"="default" 
-I0824 13:09:00.496904       1 controller.go:135] cert-manager/controller/orders "msg"="finished processing work item" "key"="default/app2-kubeoncloud-secret-2792049964-67728538
-```
 
 ## Step-10: Access Application
 ```t
 # URLs
-http://sapp1.kubeoncloud.com/app1/index.html
-http://sapp2.kubeoncloud.com/app2/index.html
-```
-
-## Step-11: Verify Ingress logs for Client IP
-```t
-# List Pods
-kubectl -n ingress-basic get pods
-
-# Check logs
-kubectl -n ingress-basic logs -f nginx-ingress-controller-xxxxxxxxx
-```
-## Step-12: Clean-Up
-```t
-# Delete Apps
-kubectl delete -R -f kube-manifests/
-
-# Delete Ingress Controller
-kubectl delete namespace ingress-basic
+http://jenkins.simplifydevopstools.com/
+http://vault.simplifydevopstools.com/
 ```
 
 ## Cert Manager
