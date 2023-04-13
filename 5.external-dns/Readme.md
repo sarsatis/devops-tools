@@ -2,6 +2,7 @@
 
 ![](../5.external-dns/img/externaldns.png)
 
+
 ## Step-01: Introduction
 - Create External DNS Manifest
 - Provide Access to DNZ Zones using **Azure Managed Service Identity** for External DNS pod to create **Record Sets** in Azure DNS Zones

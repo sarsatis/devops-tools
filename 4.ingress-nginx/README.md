@@ -13,7 +13,6 @@
 ![](../4.ingress-nginx/img/Ingress6.png)
 
 ----------------------------------------
-
 # Ingress - Basics (Create Static Public IP in Azure dedicated for Ingress)
 
 ## Step-01: Introduction
