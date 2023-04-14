@@ -57,4 +57,8 @@ k apply -f 7.argocd/argocd-ingress.yaml
 argocd login --insecure --username admin --password fIqwJTFAAiAxTO9I --grpc-web argocd.simplifydevopstools.com
 
 argocd account update-password --current-password fIqwJTFAAiAxTO9I --new-password (Give Your Pass)
+
+argocd cluster list
+
+
 ```
