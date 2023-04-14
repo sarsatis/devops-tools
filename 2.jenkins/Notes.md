@@ -3,7 +3,7 @@
 > helm repo add jenkins https://charts.jenkins.io
 > k create ns jenkins
 > kn jenkins
-> kubectl create secret docker-registry dockercred --docker-server=https://index.docker.io/v1/ --docker-username=sarthaksatish --docker-password=***** --docker-email=sarthak8055@gmail.com
+> kubectl create secret -n jenkins docker-registry dockercred --docker-server=https://index.docker.io/v1/ --docker-username=sarthaksatish --docker-password=***** --docker-email=sarthak8055@gmail.com
 
 > helm install --create-namespace jenkins 2.jenkins/
 
