@@ -60,5 +60,10 @@ argocd account update-password --current-password fIqwJTFAAiAxTO9I --new-passwor
 
 argocd cluster list
 
+Add context to kube config and add clusters to argocd using below commands
+argocd cluster add devops-aks-tools
+
+Once the clusters are added to argo cd they are stored as secret in argocd namespace
+
 
 ```
