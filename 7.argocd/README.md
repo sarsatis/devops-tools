@@ -28,7 +28,7 @@ TEST SUITE: None
 NOTES:
 In order to access the server UI you have the following options:
 
-1. kubectl port-forward service/argocd-server -n argocd 8080:443
+1. kubectl port-forward service/argocd-server -n argocd 8081:80
 
     and then open the browser on http://localhost:8080 and accept the certificate
 
@@ -54,7 +54,7 @@ k apply -f 7.argocd/argocd-ingress.yaml
 ## ArgoCD Commands
 
 ```t
-argocd login --insecure --username admin --password fIqwJTFAAiAxTO9I --grpc-web argocd.simplifydevopstools.com
+argocd login --insecure --username admin --password fIqwJTFAAiAxTO9I --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
 
 argocd account update-password --current-password fIqwJTFAAiAxTO9I --new-password (Give Your Pass)
 
@@ -65,5 +65,10 @@ argocd cluster add devops-aks-tools
 
 Once the clusters are added to argo cd they are stored as secret in argocd namespace
 
+# This is for PR Generator
+k create secret generic github-token --from-literal=token=PATTOKEN
 
+kubectl config delete-context aks-dev-cluster
+
+ kubectl config delete-cluster aks-dev-cluster 
 ```
