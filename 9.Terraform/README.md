@@ -1,6 +1,6 @@
-#Course GitHub Repository Links
+# Course GitHub Repository Links
 
-##GitHub Repository Links
+## GitHub Repository Links
 
 [Course Main Repository: hashicorp-certified-terraform-associate-on-azure](https://github.com/stacksimplify/hashicorp-certified-terraform-associate-on-azure)
 
