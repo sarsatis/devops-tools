@@ -14,9 +14,24 @@
 
 [Course Presentation: Presentation Slides PPT](https://github.com/stacksimplify/hashicorp-certified-terraform-associate-on-azure/tree/main/course-presentation)
 
+# 2.Infrastructure as Code Basics
 
+## Step-01: Understand Problems with Traditional way of Managing Infrastructure
+- Time it takes for building multiple environments
+- Issues we face with different environments
+- Scale-Up and Scale-Down On-Demand
 
+## Step-02: Discuss how IaC with Terraform Solves them
+- Visibility
+- Stability
+- Scalability
+- Security
+- Audit
 
+## Step-03: MACOS: IDE for Terraform - VS Code Editor
+- [Microsoft Visual Studio Code Editor](https://code.visualstudio.com/download)
+- [Hashicorp Terraform Plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform)
+- Configure [Course Github Repository](https://github.com/stacksimplify/hashicorp-certified-terraform-associate-on-azure) using VS Code Editor
 
 
 
