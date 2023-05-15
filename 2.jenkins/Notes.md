@@ -17,7 +17,12 @@ NOTES:
   kubectl exec --namespace default -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
 1. Get the Jenkins URL to visit by running these commands in the same shell:
   echo http://127.0.0.1:8080
-  kubectl --namespace jenkins port-forward svc/jenkins 8080:8080
+  kubectl --namespace jenkins port-forward svc/jenkins 8080:8080 &
+
+To find and kill the port
+  lsof -i :8080
+  kill -9 <PID>
+
 
 1. Login with the password from step 1 and the username: admin
 2. Configure security realm and authorization strategy

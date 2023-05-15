@@ -32,9 +32,9 @@ az account show --query "id"
 {
   "tenantId": "d52c9ea1-7c21-47b1-82a3-33a74b1f74b8",
   "subscriptionId": "3ec3acee-ef93-4cb4-a3eb-4304bc552319",
-  "resourceGroup": "sarthak-cluste_group", 
+  "resourceGroup": "devops-rg", 
   "useManagedIdentityExtension": true,
-  "userAssignedIdentityID": "cb5ab802-a9cf-43e8-9c3f-663a80bd4db8"  
+  "userAssignedIdentityID": "4b6b988b-4e41-43d2-b11e-5b7b3505f452"  
 }
 ```
 
@@ -141,6 +141,8 @@ spec:
 
 ## Step-05: Create Kubernetes Secret and Deploy ExternalDNS
 ```t
+# Create Namespace
+kubectl create ns external-dns
 # Create Secret
 cd kube-manifests/01-ExteranlDNS
 kubectl create secret generic azure-config-file --from-file=azure.json
@@ -150,7 +152,7 @@ kubectl get secrets
 
 # Deploy ExternalDNS 
 cd kube-manifests/01-ExteranlDNS
-kubectl apply -f external-dns.yml
+kubectl apply -f external-dns.yaml
 
 # Verify ExternalDNS Logs
 kubectl logs -f $(kubectl get po | egrep -o 'external-dns[A-Za-z0-9-]+')

@@ -54,9 +54,9 @@ k apply -f 7.argocd/argocd-ingress.yaml
 ## ArgoCD Commands
 
 ```t
-argocd login --insecure --username admin --password fIqwJTFAAiAxTO9I --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
+argocd login --insecure --username admin --password Bvr5kWEZqOpLMac1 --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
 
-argocd account update-password --current-password fIqwJTFAAiAxTO9I --new-password (Give Your Pass)
+argocd account update-password --current-password Bvr5kWEZqOpLMac1 --new-password (Give Your Pass)
 
 argocd cluster list
 
