@@ -11,17 +11,17 @@ metadata:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules:
-  - host: argocd.simplifydevopstools.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: argocd-server
-            port:
-              name: https
+    - host: argocd.simplifydevopstools.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: argocd-server
+                port:
+                  name: https
   tls:
-  - hosts:
-    - argocd.simplifydevopstools.com
-    secretName: argocd.simplifydevopstools-secret
+    - hosts:
+        - argocd.simplifydevopstools.com
+      secretName: argocd.simplifydevopstools-secret
