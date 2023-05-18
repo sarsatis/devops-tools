@@ -9,7 +9,11 @@ brew install helm
 # Create a namespace for your ingress resources
 kubectl create namespace argocd
 
+# Using kubectl
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 # Add the official stable repository
+
+# Using Helm 
 helm repo add argo https://argoproj.github.io/argo-helm 
 helm repo update
 
@@ -48,27 +52,27 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 ## Step 2 :- Create an ingress to access argocd 
 
 ```t
-k apply -f 7.argocd/argocd-ingress.yaml
+k apply -f 7.argo/1.argocd/argocd-ingress.yaml 
 ```
 
 ## ArgoCD Commands
 
 ```t
-argocd login --insecure --username admin --password Bvr5kWEZqOpLMac1 --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
+argocd login --insecure --username admin --password 0ZYcYh5DgyV0-ly1 --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
 
-argocd account update-password --current-password Bvr5kWEZqOpLMac1 --new-password (Give Your Pass)
+argocd account update-password --current-password 0ZYcYh5DgyV0-ly1 --new-password (Give Your Pass)
 
 argocd cluster list
 
 Add context to kube config and add clusters to argocd using below commands
-argocd cluster add devops-aks-tools
+argocd cluster add devops-tools-cluster
 
 Once the clusters are added to argo cd they are stored as secret in argocd namespace
 
 # This is for PR Generator
 k create secret generic github-token --from-literal=token=PATTOKEN
 
-kubectl config delete-context aks-dev-cluster
+kubectl config delete-context gke_fsi-retailbanking-dev_us-central1_infratest-gke
 
- kubectl config delete-cluster aks-dev-cluster 
+ kubectl config delete-cluster gke_fsi-retailbanking-dev_us-central1_infratest-gke
 ```

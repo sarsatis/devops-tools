@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: solar-system
+  namespace: argocd
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /solar
+            pathType: Prefix
+            backend:
+              service:
+                name: solar-system
+                port:
+                  number: 8080
+          - path: /app1
+            pathType: Prefix
+            backend:
+              service:
+                name: priyankalearnings
+                port:
+                  number: 8080

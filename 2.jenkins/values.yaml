@@ -241,9 +241,9 @@ controller:
 
   # List of plugins to be install during Jenkins controller start
   installPlugins:
-    - kubernetes:3910.ve59cec5e33ea_
+    - kubernetes:3923.v294a_d4250b_91
     - workflow-aggregator:596.v8c21c963d92d
-    - git:5.0.0
+    - git:5.0.2
     - configuration-as-code:1625.v27444588cc3d
     - javax-mail-api:1.6.2-9
     - sshd:3.275.v9e17c10f2571
@@ -823,7 +823,7 @@ additionalAgents: {}
 #    TTYEnabled: true
 
 persistence:
-  enabled: true
+  enabled: false
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
