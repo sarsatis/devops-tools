@@ -13,11 +13,11 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 # Add the official stable repository
 
-# Using Helm 
-helm repo add argo https://argoproj.github.io/argo-helm 
+# Using Helm
+helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update
 
-#  Customizing the Chart Before Installing. 
+#  Customizing the Chart Before Installing.
 helm show values argo/argo-cd
 
 helm install argocd argo/argo-cd -n argocd
@@ -47,18 +47,18 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 (You should delete the initial secret afterwards as suggested by the Getting Started Guide: https://argo-cd.readthedocs.io/en/stable/getting_started/#4-login-using-the-cli)
 
-````
+```
 
-## Step 2 :- Create an ingress to access argocd 
+## Step 2 :- Create an ingress to access argocd
 
 ```t
-k apply -f 7.argo/1.argocd/argocd-ingress.yaml 
+k apply -f 7.argo/1.argocd/argocd-ingress.yaml
 ```
 
 ## ArgoCD Commands
 
 ```t
-argocd login --insecure --username admin --password 0ZYcYh5DgyV0-ly1 --grpc-web argocd.simplifydevopstools.com --skip-test-tls 
+argocd login --insecure --username admin --password 0ZYcYh5DgyV0-ly1 --grpc-web argocd.simplifydevopstools.com --skip-test-tls
 
 argocd account update-password --current-password 0ZYcYh5DgyV0-ly1 --new-password (Give Your Pass)
 
@@ -74,5 +74,5 @@ k create secret generic github-token --from-literal=token=PATTOKEN
 
 kubectl config delete-context gke_fsi-retailbanking-dev_us-central1_infratest-gke
 
- kubectl config delete-cluster gke_fsi-retailbanking-dev_us-central1_infratest-gke
+kubectl config delete-cluster gke_fsi-retailbanking-dev_us-central1_infratest-gke
 ```
