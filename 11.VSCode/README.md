@@ -45,9 +45,11 @@ print('Hello World')
 ```
 
 # 12. To add image to readme
+
 ## Drag and drop image to readme and press shift immediately it will automatically add path
 
 # 13. Markdown extensions
+
 - Markdown all in one
 - Markdown to PDF
 - Markdown lint
@@ -56,4 +58,9 @@ print('Hello World')
 - Markdown shortcuts
 
 # 14. Enable wrap tabs
+
 ## Go to setting and enable wrap tabs
+
+# 15. To set path
+
+## sudo ln -s /Users/sarthaksatish/Desktop/Sarthak/Softwares/oc /usr/local/bin

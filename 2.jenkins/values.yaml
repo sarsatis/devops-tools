@@ -249,7 +249,7 @@ controller:
     - sshd:3.275.v9e17c10f2571
 
   # Set to false to download the minimum required version of all dependencies.
-  installLatestPlugins: true
+  installLatestPlugins: false
 
   # Set to true to download latest dependencies of any plugin that is requested to have the latest version.
   installLatestSpecifiedPlugins: false
@@ -823,7 +823,7 @@ additionalAgents: {}
 #    TTYEnabled: true
 
 persistence:
-  enabled: true
+  enabled: false
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
