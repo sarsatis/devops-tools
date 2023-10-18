@@ -1,9 +1,9 @@
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-name: jenkins-cluster
+name: jenkins-test-cluster
 nodes:
   - role: control-plane
     # add a mount from /path/to/my/files on the host to /files on the node
     extraMounts:
-      - hostPath: /Users/sarthaksatish/Desktop/Sarthak/jenkins_volume
-        containerPath: /jenkins_volume
+      - hostPath: /Users/sarthaksatish/Desktop/Sarthak/jenkins_backup
+        containerPath: /jenkins_backup

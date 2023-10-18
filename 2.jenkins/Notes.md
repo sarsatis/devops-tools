@@ -14,7 +14,7 @@ STATUS: deployed
 REVISION: 1
 NOTES:
 1. Get your 'admin' user password by running:
-  kubectl exec --namespace default -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+  kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
 1. Get the Jenkins URL to visit by running these commands in the same shell:
   echo http://127.0.0.1:8080
   kubectl --namespace jenkins port-forward svc/jenkins 8080:8080 &

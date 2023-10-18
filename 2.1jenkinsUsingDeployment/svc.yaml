@@ -6,13 +6,9 @@ metadata:
 spec:
   selector:
     app: jenkins-server
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 8080
       targetPort: 8080
       nodePort: 32000
       name: http
-    - port: 50000
-      targetPort: 50000
-      nodePort: 32001
-      name: jnlp

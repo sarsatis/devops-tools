@@ -30,8 +30,8 @@ spec:
           ports:
             - name: httpport
               containerPort: 8080
-            - name: jnlpport
-              containerPort: 50000
+            # - name: jnlpport
+            #   containerPort: 50000
           livenessProbe:
             httpGet:
               path: "/login"
@@ -48,15 +48,15 @@ spec:
             periodSeconds: 10
             timeoutSeconds: 5
             failureThreshold: 3
-          volumeMounts:
-            - name: jenkins-data
-              mountPath: /var/jenkins_home
-      volumes:
-        - name: jenkins-data
-          # hostPath:
-          #   path: /jenkins_volume
-            # type: DirectoryOrCreate
+          # volumeMounts:
+          #   - name: jenkins-data
+          #     mountPath: /var/jenkins_home
+      # volumes:
+      #   - name: jenkins-data
+      #     # hostPath:
+      #     #   path: /jenkins_backup
+      #     #   type: DirectoryOrCreate
           
-          persistentVolumeClaim:
-            claimName: my-hostpath-pvc
-          # emptyDir: {}
+      #     persistentVolumeClaim:
+      #       claimName: my-hostpath-pvc
+      #     # emptyDir: {}
