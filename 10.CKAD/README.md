@@ -46,6 +46,18 @@ k delete po name
 k edit po name && k replace --force -f filepath
 ```
 
+### To use container port inside pod
+
+Note: Remember to use sleep command when using busybox
+
+```yaml
+- image: busybox
+  name: busy
+  command: ["sleep", "3000"]
+  ports:
+    - containerPort: 8080
+```
+
 ## ReplicaSet
 
 ```yaml
