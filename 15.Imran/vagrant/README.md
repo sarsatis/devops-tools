@@ -38,8 +38,8 @@ vagrant init boxname
 vagrant box list
 vagrant status
 vagrant reload
-vagrant destroy
-vagrant halt
-vagrant up
-vagrant global-status
+vagrant destroy (To destroy all vms)
+vagrant halt  (To power off all vms)
+vagrant up  (To bring the powerd off vms)
+vagrant global-status  (To check all vms)
 vagrant global-status --prune
